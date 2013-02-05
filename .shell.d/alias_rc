@@ -1,0 +1,163 @@
+## -*- mode:sh -*- #
+################################################################################
+## Shell Config -- Alias Definitions.
+## Date 2012-07-02
+################################################################################
+
+##==============================================================================
+## General
+##==============================================================================
+
+# Warning: if this does not work if you change of shell without relogging, use
+# 'source .[shell]rc' instead.
+if isShell "bash"; then
+    alias ..='cd ..'
+    alias esrc='$EDITOR ~/.bashrc'
+    alias ssrc='source ~/.bashrc'
+fi
+
+if isShell "zsh"; then
+    alias esrc='$EDITOR ~/.zshrc'
+    alias ssrc='source ~/.zshrc'
+fi
+
+## Enable color support of ls and also add handy aliases.
+if [ "$TERM" != "dumb" ]; then
+    eval "`dircolors -b`"
+fi
+
+##==============================================================================
+##==============================================================================
+
+## 'ls' redefinition
+alias ls='ls --color=auto -F -v'
+
+## Listing aliases
+alias l='ls -1'
+alias la='ls -lAh --group-directories-first' # Hidden files
+alias lc='ls -ltcrh --group-directories-first' # by change time
+alias lk='ls -lSrh --group-directories-first' # by size
+alias ll='ls -lh --group-directories-first' # Detailed view with human readable values.
+alias lx='ls -lXh --group-directories-first' # sort by extension
+
+# Misc
+alias cp="cp -i" # confirm before overwriting something
+alias xmx='xrdb -merge ~/.Xresources'
+alias grep='grep --color=auto'
+ 
+## Emacs
+if [ -e "/usr/bin/emacs" ]; then
+   alias em='emacsclient -a "" -t'
+   alias emacs-reload="emacsclient -e '(kill-emacs)' >/dev/null 2>&1; /usr/bin/emacs --daemon"
+fi
+
+## Check colors supported by the current terminal.
+alias printcolors='(x=`tput op` y=`printf %76s`;for i in {0..256};do o=00$i;echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;done)'
+
+# List desktop applications
+alias applist='grep -r "^Name=" /usr/share/applications/* | cut -d'=' -f2| sort'
+
+## Remove executable attribute
+alias nox='find . -type f -exec chmod a-x {} \;'
+
+## Get your external IP
+[ -e "/usr/bin/curl" ] && alias myip='curl ifconfig.me'
+
+## Network discovery
+[ -e "/usr/bin/nmap" ] && alias netdiscover='nmap -sP "192.168.1.*"'
+
+# Prevents accidentally clobbering files.
+alias mkdir='mkdir -p'
+
+# Reset terminal -- Faster alternative of 'reset'
+alias cls='printf "\ec"'
+
+# Display PATH and LD_LIBRARY_PATH in a more readable way
+alias echopath='echo -e ${PATH//:/\\n}'
+alias echolibpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
+
+## Shutdown / Reboot
+## Will only work with consolekit and dbus daemons running.
+if [ -e "/usr/bin/dbus-send" ]; then
+    alias halt='dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop'
+    alias reboot='dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart'
+    alias restart='dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart'
+    alias shutdown='dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop'
+fi
+
+## Screensaver
+[ -e "/usr/bin/xscreensaver-command" ] && alias xss='xscreensaver-command --lock'
+
+## Configuration files
+[ -e "/etc/rc.conf" ] && alias ercc='sudo $EDITOR /etc/rc.conf'
+
+##==============================================================================
+## Zsh power aliases
+##==============================================================================
+
+# if isShell "zsh"; then
+## Inline aliases, zsh -g aliases can be anywhere in command line
+#alias -g G='| grep -'
+#alias -g L='| less'
+
+## Now just type the image name to launch irfanview
+#alias -s jpg='/usr/bin/gpicview'
+
+# fi
+
+##==============================================================================
+## Pacman aliases
+##==============================================================================
+[ -e "/usr/bin/pacman" ] && PACMAN_FRONTEND='pacman'
+
+## Use of Pacman-Color
+if [ -e "/usr/bin/pacman-color" ]; then
+    PACMAN_FRONTEND='pacman-color'
+
+    if isShell "zsh" ; then
+        compdef _pacman pacman-color
+    elif isShell "bash"; then
+        complete -o default -o nospace -F _pacman pacman-color
+    fi
+fi
+
+## Pacman aliases
+if [ "$PACMAN_FRONTEND" = "pacman" ]; then
+    alias pc='sudo pacman -Scc'
+    alias pi='sudo pacman -S --needed'
+    alias pqi='pacman -Qi'
+    alias pqs='pacman -Qs'
+    alias psi='pacman -Si'
+    alias pr='sudo pacman -Rs'
+    alias pss='pacman -Ss'
+    alias pu='sudo pacman -Syu'
+
+## Change 'name' and 'size' variables according your locale.
+    # alias pql='pacman -Qi | awk '"'"'/^Nom/ {pkg=$3} /Taille/ {print $4$5,pkg}'"'"' | sort -n'
+    alias pql='pacman -Qi | awk '"'"'/^Name/ {pkg=$3} /Size/ {print $4$5,pkg}'"'"' | sort -n'
+fi
+
+if [ "$PACMAN_FRONTEND" = "pacman-color" ]; then
+    alias pc='sudo pacman-color -Scc'
+    alias pi='sudo pacman -S --needed'
+    alias pqi='pacman-color -Qi'
+    alias pqs='pacman-color -Qs'
+    alias psi='pacman-color -Si'
+    alias pr='sudo pacman-color -Rs'
+    alias pss='pacman-color -Ss'
+    alias pu='sudo pacman-color -Syu'
+
+## Change 'name' and 'size' variables according your locale.
+    # alias pql='pacman-color -Qi | awk '"'"'/^Nom/ {pkg=$3} /Taille/ {print $4$5,pkg}'"'"' | sort -n'
+    alias pql='pacman-color -Qi | awk '"'"'/^Name/ {pkg=$3} /Size/ {print $4$5,pkg}'"'"' | sort -n'
+fi
+
+##==============================================================================
+## APT aliases
+##==============================================================================
+
+if [ -e "/usr/bin/apt-get" ]; then
+    alias au='sudo apt-get update'
+    alias ac='sudo apt-get autoremove && sudo apt-get clean'
+    alias ai='sudo apt-get install'
+fi

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/29/trunk/.vim/ftplugin/python/pyflakes
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/29/trunk/.vim/ftplugin/python/pyflakes/LICENSE
+END
+setup.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/29/trunk/.vim/ftplugin/python/pyflakes/setup.py
+END
+NEWS.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/29/trunk/.vim/ftplugin/python/pyflakes/NEWS.txt
+END

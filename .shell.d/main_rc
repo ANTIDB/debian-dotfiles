@@ -1,0 +1,52 @@
+## -*- mode:sh -*- #
+################################################################################
+## Shell Config -- Main
+## Date 2012-07-09
+################################################################################
+
+## Mask
+## Result for 027 is: rwxr-x---
+umask 027
+
+## Path
+export PATH=.:$PATH
+
+## Terminal
+# export TERM=xterm-256color
+
+## Make 'less' more friendly for non-text input files, see lesspipe(1).
+[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+
+## Choose pager.
+export MANPAGER="less -s"
+
+## Time display (with ls command for example)
+export TIME_STYLE=+"| %d/%m/%Y  %H:%M | "
+
+## System locale
+export LC_MESSAGES=en_US.utf8
+
+## Default text editor
+EDITOR=vim
+if [ "" != "$(command -v vim)" ]; then
+    EDITOR=vim
+fi
+if [ "" != "$(command -v emacs)" ]; then
+   #EDITOR=emacs
+   EDITOR='emacsclient -a "" -t'
+fi
+export EDITOR
+
+## Internet Browser
+[ -e "/usr/bin/firefox" ] && export BROWSER="firefox"
+#[ -e "/usr/bin/luakit" ] && export BROWSER="luakit"
+
+## Title
+## If this is an xterm set the title to user@host:dir
+#case "$TERM" in
+#xterm*|rxvt*)
+#    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
+#    ;;
+#*)
+#    ;;
+#esac

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/!svn/ver/36/trunk/.vim/ftplugin
+END
+sass.vim
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/36/trunk/.vim/ftplugin/sass.vim
+END
+scss.vim
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/36/trunk/.vim/ftplugin/scss.vim
+END
+haml.vim
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/36/trunk/.vim/ftplugin/haml.vim
+END

@@ -1,0 +1,41 @@
+# NCMPCPP CONFIGURATION
+# FOR SETTINGS INFORMATION, SEE /usr/share/doc/ncmpcpp/config
+
+# DIRECTORY SETTINGS
+lyrics_directory = "/home/wsy/music/lyrics"
+mpd_music_dir = "/home/wsy/music"
+
+# BEHAVIOUR
+playlist_disable_highlight_delay="3"
+
+# USER INTERFACE
+user_interface = "alternative"
+song_list_format = "{$8%n.$9 }{$2%a$9 - }{$8%t$9}|{%f}$R{$2(%l)$9}"
+alternative_header_first_line_format = "$b$1[$8 {%t}|{%f} $1]$/b"
+alternative_header_second_line_format = "{$b{$2%a$9 - }{$8%b$9}}|{%D}"
+
+
+song_window_title_format = "NCMPCPP - {%a - }{%t}|{%f}"
+song_columns_list_format = "(3Ef)[white]{n:#} (35)[red]{t|f} (25)[white]{a} (30)[red]{b} (8f)[white]{lr:Length}"
+playlist_show_remaining_time = "yes"
+playlist_shorten_total_times = "yes"
+playlist_display_mode = "columns"
+progressbar_look = "--"
+clock_display_seconds = "yes"
+display_bitrate = "no"
+
+# COLOR
+color1              = "red"
+color2              = "white"
+header_window_color = "red"
+main_window_color   = "white"
+statusbar_color     = "white"
+progressbar_color   = "white"
+empty_tag_marker    = "--"
+empty_tag_color     = "red"
+window_border_color = "red"
+state_line_color    = "white"
+state_flags_color   = "white"
+active_column_color = "red"
+main_window_highlight_color    = "red"
+alternative_ui_separator_color = "white"

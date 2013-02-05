@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/29/trunk/.vim/ftplugin/python
+END
+python_pep8.vim
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/23/trunk/.vim/ftplugin/python/python_pep8.vim
+END
+pyflakes.vim
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/23/trunk/.vim/ftplugin/python/pyflakes.vim
+END

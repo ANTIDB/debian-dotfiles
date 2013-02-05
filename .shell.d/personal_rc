@@ -1,0 +1,21 @@
+## -*- mode:sh -*- #
+########################################################################
+## Shell -- Personal Definitions.
+## Date 2012-07-02
+########################################################################
+
+export PATH=/home/wsy/bin:$PATH
+
+# Perforce
+#
+#
+P4PORT=10.71.0.81:1666
+P4USER=wsy
+P4PASSWD=704615
+P4EDITOR=vim
+P4DIFF=vimdiff
+
+export P4PORT P4USER P4PASSWD P4EDITOR
+
+# todotxt
+alias todo='todo.sh'
